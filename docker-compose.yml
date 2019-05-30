@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  client:
+    restart: always
+    build:
+      context: src/client/
+    ports:
+      - 3000:3000
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpw
+      MYSQL_DATABASE: example-db
+      MYSQL_USER: example-user
+      MYSQL_PASSWORD: password
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./src/db/migrations:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
