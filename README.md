@@ -73,7 +73,7 @@ doesn't deny the access control headers.
 
 ## Getting started
 
-To get started, please fork this repository. We'd like you to share this repository
+To get started, please fork this repository. We'd like you to share the forked repository
 with us once you're done.
 
 To run this environment, the only prerequisite is Docker. Follow the instructions 
