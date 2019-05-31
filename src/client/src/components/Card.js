@@ -12,8 +12,20 @@ const CardWrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
+const ColumnWrapper = styled.div`
+display: flex;
+flex-direction: column;
+`
+
 const CardIcon = styled.img``;
-const Title = styled.div``;
+const Title = styled.h3`
+margin: 4px;
+`;
+const Location = styled.p`
+margin: 2px;
+margin-left: 4px;
+`;
 
 class Card extends React.Component {
   render() {
@@ -22,7 +34,10 @@ class Card extends React.Component {
     return (
       <CardWrapper>
         <CardIcon src={card.imgUrl} />
-        <Title>{card.name}</Title>
+        <ColumnWrapper>
+          <Title>{card.name}</Title>
+          <Location>{card.location}</Location>
+        </ColumnWrapper>
       </CardWrapper>
     );
   }
