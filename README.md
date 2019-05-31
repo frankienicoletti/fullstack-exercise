@@ -68,6 +68,9 @@ This endpoint should return a json response, with a list of records of the follo
 Feel free to create the backend using any language of your choice. The only requirement
 is to dockerize the backend, and add it to the docker compose environment. 
 
+One thing to note for your backend: you'll need to support CORS so that the client 
+doesn't deny the access control headers.
+
 ## Getting started
 
 To get started, please fork this repository. We'd like you to share this repository
@@ -86,10 +89,18 @@ Without an implemented backend, the client and database should launch after a li
 
 If you visit [http://localhost:3000](http://localhost:3000), you should see the following page:
 
+![initial state](https://raw.githubusercontent.com/CanopyIQ/fullstack-exercise/master/images/initial.png)
+
 ## Expected results
 
 When you've successfully created a backend that's running at port 4000, exposed in your docker
 environment, you should see the following list of cards in the client:
 
+![list state](https://raw.githubusercontent.com/CanopyIQ/fullstack-exercise/master/images/list.png)
 
 And here's what results you should get if you're searching:
+
+![search state](https://raw.githubusercontent.com/CanopyIQ/fullstack-exercise/master/images/searched.png)
+
+Along with the forked repository, please provide a brief summary of your decisions of language, frameworks
+and major libraries.
