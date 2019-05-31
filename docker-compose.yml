@@ -5,6 +5,8 @@ services:
     restart: always
     build:
       context: src/client/
+    volumes:
+      - ./src/client/src:/var/app/src
     ports:
       - 3000:3000
   db:
