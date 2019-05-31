@@ -3,10 +3,42 @@ import * as React from "react";
 import CardList from "./CardList";
 import SearchInput from "./SearchInput";
 
+import API from '../utils/API';
+
 class SearchableCardList extends React.PureComponent {
   state = {
-    searchInput: ""
+    searchInput: "",
+    cards: [],
+    apiError: false
   };
+
+  async getPeople(searchInput) {
+    try {
+      const response = await API.get('/people', {
+        params: {
+          q: searchInput
+        }
+      });
+      this.setState({
+        cards: response.data,
+        apiError: false
+      });
+    } catch (e) {
+      this.setState({
+        apiError: true
+      });
+    }
+  }
+
+  async componentDidMount() {
+    await this.getPeople(this.state.searchInput);
+  }
+
+  async componentDidUpdate(prevProps, prevState) {
+    if (this.state.searchInput !== prevState.searchInput) {
+      await this.getPeople(this.state.searchInput);
+    }
+  }
 
   onInputChange = event => {
     this.setState({ searchInput: event.target.value });
@@ -24,8 +56,6 @@ class SearchableCardList extends React.PureComponent {
   };
 
   render() {
-    const { cards } = this.props;
-
     return (
       <div>
         <SearchInput
@@ -33,7 +63,11 @@ class SearchableCardList extends React.PureComponent {
           value={this.state.searchInput}
           onChange={this.onInputChange}
         />
-        <CardList cards={this.filterCards(cards, this.state.searchInput)} />
+        {
+          this.state.apiError
+            ? <div>Failed to connect to backend</div>
+            : <CardList cards={this.state.cards} />
+        }
       </div>
     );
   }
