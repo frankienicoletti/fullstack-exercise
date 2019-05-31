@@ -19,15 +19,15 @@ schemas for those tables:
 | --------- | ----------- |
 | id        | Primary Key |
 | name      | Varchar     |
-| img_url . | Varchar .   |
-| location .| Varchar .   |
+| img_url   | Varchar     |
+| location  | Varchar     |
 
 ### people_colors
 | **Field** | **Type**    |
 | --------- | ----------- |
 | id        | Primary Key |
 | people_id | Foreign Key |
-| color .   | Varchar .   |
+| color     | Varchar     |
 
 The backend should respond to `http://localhost:4000/people` with the optional query parameter `q` 
 (eg. `http://localhost:4000/people?q=vin`. 
