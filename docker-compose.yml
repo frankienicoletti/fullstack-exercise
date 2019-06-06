@@ -21,3 +21,19 @@ services:
       - ./src/db/migrations:/docker-entrypoint-initdb.d
     ports:
       - 3306:3306
+  server:
+    restart: always
+    build:
+      context: src/server/
+    volumes:
+      - ./src/server:/var/app
+    ports:
+      - 4000:4000
+    depends_on:
+      - "db"
+    environment:
+      MYSQL_HOST: db
+      MYSQL_DATABASE: example-db
+      MYSQL_USER: example-user
+      MYSQL_PASSWORD: password
+      MYSQL_PORT: 3306
